@@ -1,0 +1,102 @@
+<div class="container-fluid">
+    <div>
+        <div id="wrapper" class="toggled">
+            <side-Navigation></side-Navigation>
+            <!-- Page Content -->
+            <div id="page-content-wrapper">
+                <div class="container-fluid">
+                    <div class="top-margin">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <form ng-submit="vm.modifyprofile()">
+                                    <div class="card top-margin-profile-card">
+                                        <div class="card-header">
+                                            Your Organization Information
+                                            <button type="button" class="btn btn-dark float-right mr-1" ng-click="vm.cancel()">Cancel <i class="fa fa-times fa-1.5x"></i></button>
+                                            <button type="submit" class="btn btn-dark float-right mr-1">Save <i class="fa fa-floppy-o fa-1.5x"></i></button>
+                                            <button type="button" class="btn btn-dark float-right mr-1" ng-click="vm.edit()">Edit <i class="fa fa-pencil fa-1.5x"></i></button>
+                                        </div>
+                                        <div class="card-body">
+                                              <div class>
+                                                  <div class="form-group row">
+                                                    <label for="firstname" class="col-lg-6 col-form-label">Organization name:</label>
+                                                    <div class="col-lg-6">
+                                                      <input type="text" ng-readonly="!canEdit" ng-class="makeEditable" class="form-control-plaintext" id="firstname" ng-model="vm.entityname">
+                                                    </div>
+                                                  </div>
+                                                  <div class="form-group row">
+                                                    <label for="username" class="col-lg-6 col-form-label">Username:</label>
+                                                    <div class="col-lg-6">
+                                                      <input type="text" readonly class="form-control-plaintext" id="username" value="{{vm.username}}">
+                                                    </div>
+                                                  </div>
+                                                  <div class="form-group row">
+                                                    <label for="email" class="col-lg-6 col-form-label">Email Address:</label>
+                                                    <div class="col-lg-6">
+                                                      <input type="text" ng-readonly="!canEdit" ng-class="makeEditable" class="form-control-plaintext" id="email" ng-model="vm.email">
+                                                    </div>
+                                                  </div>
+                                                  <div class="form-group row">
+                                                    <label for="street" class="col-lg-6 col-form-label">Street:</label>
+                                                    <div class="col-lg-6">
+                                                      <input type="text" ng-readonly="!canEdit" ng-class="makeEditable" class="form-control-plaintext" id="street" ng-model="vm.street">
+                                                    </div>
+                                                  </div>
+                                                  <div class="form-group row">
+                                                    <label for="city" class="col-lg-6 col-form-label">City:</label>
+                                                    <div class="col-lg-6">
+                                                      <input type="text" ng-readonly="!canEdit" ng-class="makeEditable" class="form-control-plaintext" id="city" ng-model="vm.city">
+                                                    </div>
+                                                  </div>
+                                                  <div class="form-group row">
+                                                    <label for="state" class="col-lg-6 col-form-label">State:</label>
+                                                    <div class="col-lg-6">
+                                                      <input type="text" ng-readonly="!canEdit" ng-class="makeEditable" class="form-control-plaintext" id="state" ng-model="vm.state">
+                                                    </div>
+                                                  </div>
+                                                  <div class="form-group row">
+                                                    <label for="country" class="col-lg-6 col-form-label">Country:</label>
+                                                    <div class="col-lg-6">
+                                                      <input type="text" ng-readonly="!canEdit" ng-class="makeEditable" class="form-control-plaintext" id="country" ng-model="vm.country">
+                                                    </div>
+                                                  </div>
+                                                  <div class="form-group row">
+                                                    <label for="zip" class="col-lg-6 col-form-label">Zip:</label>
+                                                    <div class="col-lg-6">
+                                                      <input type="text" ng-readonly="!canEdit" ng-class="makeEditable" class="form-control-plaintext" id="zip" ng-model="vm.zip">
+                                                    </div>
+                                                  </div>
+                                              </div>
+                                        </div>
+                                    </div>
+                                    </form>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card top-margin-profile-card">
+                                    <div class="card-header">
+                                        Inventory Details
+                                        <i class="fa fa-refresh" ng-click="vm.loadinventroy()"></i>
+                                    </div>
+                                    <div class="card-body">
+                                      <div ng-if="vm.inventoryerror" class="alert alert-danger search-messages" role="alert">
+                                        <article>{{vm.inventoryerror}}</article>
+                                      </div>
+                                      <div ng-if="vm.noinventory" class="alert alert-warning search-messages text-center" role="alert">
+                                        <article>{{vm.noinventory}}</article>
+                                        <button type="button" class="btn btn-dark mt-3" ng-click="vm.configureinventory()">Configure Now</button>
+                                      </div>
+                                      <canvas ng-hide="vm.inventoryerror" id="base" class="chart-horizontal-bar" chart-data="data" chart-labels="labels" >
+                                      </canvas>
+                                      <footer ng-hide="vm.noinventory" class="blockquote-footer">*All the units are in gallons.</footer>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /#page-content-wrapper -->
+        
+        </div>
+    </div>
+</div>

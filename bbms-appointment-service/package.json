@@ -1,0 +1,27 @@
+{
+  "name": "bbms-appointment-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akshay0709/bbms-appointment-service.git"
+  },
+  "author": "Akshay Pawar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akshay0709/bbms-appointment-service/issues"
+  },
+  "homepage": "https://github.com/akshay0709/bbms-appointment-service#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.2",
+    "mongodb": "^3.0.4",
+    "mongoose": "^5.0.9",
+    "npm": "^5.7.1"
+  }
+}

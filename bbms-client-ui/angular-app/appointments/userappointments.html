@@ -1,0 +1,84 @@
+<div class="container-fluid">
+    <div class="row top-margin">
+        <div ng-if="vm.apterror" class="alert alert-warning search-messages" role="alert">
+            <article>{{vm.apterror}}</article>
+        </div>
+        <div ng-if="vm.aptnoresults" class="alert alert-secondary search-messages" role="alert">
+            <article>{{vm.aptnoresults}}</article>
+        </div>
+        <div class="card w-75 mx-auto mt-2" ng-repeat="appointment in vm.appointments">
+            <div class="card-body">
+                <p class="card-title">Your appointment at: <strong>{{appointment.entityName}}</strong> <span ng-if="appointment.isCompleted==false" class="badge badge-warning">pending</span> <span ng-if="appointment.isCompleted==true" class="badge badge-success">completed</span></p>
+                <div class="row">
+                    <div class="col-md-7">
+                        <article>Date: <strong>{{appointment.appointmentDate | date}}</strong></article>
+                        <article>Your contact: <strong>{{appointment.userContact}}</strong></article>
+                    </div>
+                    <div class="col-md-5">
+                        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#appointmentModal{{appointment._id}}">Edit <i class="fa fa-pencil-square-o fa-1.5x"></i></button>
+                        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#deleteAptModal{{appointment._id}}">Delete <i class="fa fa-times fa-1.5x"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" modal="appointmentModal{{appointment._id}}" id="appointmentModal{{appointment._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                 <form name="editAptForm" ng-submit="vm.editappointment(editAptForm)">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Appointment</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <div ng-if="vm.aptSuccess" class="alert alert-success" role="alert">
+                            {{vm.aptSuccess}}
+                        </div>
+                        <div ng-if="vm.aptError" class="alert alert-danger" role="alert">
+                            {{vm.aptError}}
+                        </div>
+                        <label>Edit Date</label>
+                        <input type="date" class="form-control" ng-model="vm.date">
+                        <label>Edit contact</label>
+                        <input type="number" class="form-control" ng-model="vm.contact">
+                        <input type="hidden"  name="id" value="{{appointment._id}}">
+                      </div>
+                      <div class="modal-footer">
+                        <button type="submit" class="btn btn-dark">Save</button>
+                        <button type="reset" class="btn btn-dark" data-dismiss="modal">Cancel</button>
+                      </div>
+                    </div>
+                 </form> 
+                </div>
+            </div>
+            <div class="modal fade" modal="deleteAptModal{{appointment._id}}" id="deleteAptModal{{appointment._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                 <form name="deleteAptForm" ng-submit="vm.deleteappointment(deleteAptForm)">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete Appointment</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <div ng-if="vm.delAptSuccess" class="alert alert-success" role="alert">
+                            {{vm.delAptSuccess}}
+                        </div>
+                        <div ng-if="vm.delAptError" class="alert alert-danger" role="alert">
+                            {{vm.delAptError}}
+                        </div>
+                        <article>Are you sure you want to delete the appointment?</article>
+                        <input type="hidden"  name="id" value="{{appointment._id}}">
+                      </div>
+                      <div class="modal-footer">
+                        <button type="submit" class="btn btn-dark">Delete</button>
+                        <button type="reset" class="btn btn-dark" data-dismiss="modal">Cancel</button>
+                      </div>
+                    </div>
+                 </form> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

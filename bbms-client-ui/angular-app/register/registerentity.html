@@ -1,0 +1,72 @@
+<div class="container">
+        <div class="row top-margin">
+            <div class="col-md-12 reg-heading-align">
+                <i class="fa fa-address-book fa-3x"></i>
+                <h3 class="mb-3">Please register</h3>
+            </div>
+        </div>
+        <div ng-if="vm.message" class="alert alert-success alert-dismissible fade show" role="alert">
+            <p>{{ vm.message }}</p>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div ng-if="vm.error" class="alert alert-danger alert-dismissible fade show" role="alert">
+          <p>{{ vm.error }}</p>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form name="registerentity" ng-submit="vm.registerentity()">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="entityname">Blood Bank/Hospital name</label>
+                        <input ng-model="vm.entityname" type="text"  id="entityname" class="form-control" placeholder="Abc Organization" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input ng-model="vm.username" type="text" id="username" class="form-control" placeholder="Username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input ng-model="vm.email" type="email" id="email" class="form-control" placeholder="you@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input ng-model="vm.password" type="password" id="password" class="form-control" placeholder="xxxxx" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="street">Street</label>
+                        <input ng-model="vm.street" type="text" id="street" class="form-control" placeholder="123 Main st." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="street">City</label>
+                        <input ng-model="vm.city" type="text" id="city" class="form-control" placeholder="123 Main st." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State</label>
+                        <input ng-model="vm.state" type="text" id="state" class="form-control" placeholder="..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <input ng-model="vm.country" type="text" id="country" class="form-control" placeholder="..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="zip">Zip</label>
+                        <input ng-model="vm.zip" type="text" id="zip" class="form-control" placeholder="123xxx" required>
+                    </div>
+                    <!-- <div class="form-group">
+                        <label for="uploadfile">Upload File</label>
+                        <input type="file" id="uploadfile" class="form-control">
+                    </div> -->
+                </div>
+            </div>
+            <hr class="mb-3">
+            <div class="row">
+                <button class="btn btn-dark btn-lg btn-block" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>

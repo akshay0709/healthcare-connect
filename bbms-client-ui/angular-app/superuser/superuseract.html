@@ -1,0 +1,34 @@
+<div class="container-fluid">
+    <div class="top-margin">
+        <div>
+            <button type="button" class="btn btn-dark ml-2" ng-click="vm.pendingactivations()">Pending activations</button>
+        </div>
+        <div ng-if="vm.unerror" class="alert alert-warning search-messages mt-2" role="alert">
+            <article>{{vm.unerror}}</article>
+        </div>
+        <div ng-if="vm.nounactiv" class="alert alert-secondary search-messages mt-2" role="alert">
+            <article>{{vm.nounactiv}}</article>
+        </div>
+        <div ng-if="vm.activsuccess" class="alert alert-success search-messages mt-2" role="alert">
+            <article>{{vm.activsuccess}}</article>
+        </div>
+        <div ng-if="vm.activerror" class="alert alert-warning search-messages mt-2" role="alert">
+            <article>{{vm.activerror}}</article>
+        </div>
+        <div class="mt-2 col-md-7 mx-auto" ng-if="vm.unactivatedaccounts">
+            <div class="card" ng-repeat="unactiv in vm.unactivatedaccounts">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <article>Username: <strong>{{unactiv.username}}</strong></article>
+                            <article>Role: <strong>{{unactiv.role}}</strong></article>
+                        </div>
+                        <div class="col-md-5">
+                            <button type="button" class="btn btn-dark" ng-click="vm.activate(unactiv._id)">Activate</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,114 @@
+<div class="container-fluid">
+    <div>
+        <div id="wrapper" class="toggled">
+            <side-Navigation></side-Navigation>
+            <div id="page-content-wrapper">
+                <div class="container-fluid">
+                    <div class="top-margin">
+                        <div class="card">
+                            <div class="card-header">
+                                Search Blood Banks/Hospitals
+                            </div>
+                            <div>
+                                <form ng-submit="vm.search()">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div id="custom-search-input" class="mt-1 mb-1">
+                                                <div class="input-group col-md-12">
+                                                    <input type="text" ng-model="vm.searchcity" class="search-query form-control" placeholder="search by city"/>
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-dark" type="submit">
+                                                            <span class="fa fa-search"></span>
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div id="custom-search-input" class="mt-1 mb-1">
+                                                <div class="input-group col-md-12">
+                                                    <input type="text" ng-model="vm.searchzip" class="search-query form-control" placeholder="search by zip"/>
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-dark" type="submit">
+                                                            <span class="fa fa-search"></span>
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div ng-if="vm.error" class="alert alert-warning search-messages mt-2" role="alert">
+                            <article>{{vm.error}}</article>
+                        </div>
+                        <div ng-if="vm.noresult" class="alert alert-secondary search-messages mt-2" role="alert">
+                            <article>{{vm.noresult}}</article>
+                        </div>
+                        <div ng-if="vm.entitylist">
+                            <div class="mt-3">
+                                <h6>Search results for: <strong>{{vm.searchcity}}</strong></h6>
+                            </div>
+                            <div class="mt-3">
+                                <div class="card mt-2" ng-repeat="entity in vm.entitylist">
+                                    <div class="card-body">
+                                        <h4 class="card-title">{{entity.entityname}} <span class="badge badge-warning" ng-show="'{{$root.loggedUser}}' == '{{entity.username}}'">You</span></h4>
+                                        <div class="row">
+                                            <div class="col-md-7">
+                                                <article><strong>Address: </strong>{{entity.street}}, {{entity.city}}, {{entity.state}}, {{entity.country}} - {{entity.zip}}</article>
+                                                <article><strong>Email Address: </strong>{{entity.email}}</article>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <button ng-disabled="'{{$root.loggedUser}}' == '{{entity.username}}'" type="button" class="btn btn-dark" data-toggle="modal" data-target="#requestModal{{entity.username}}">Request <i class="fa fa-ambulance fa-1.5x"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal fade" modal="requestModal{{entity.username}}" id="requestModal{{entity.username}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                         <form name="makeRequestForm" ng-submit="vm.makerequest(makeRequestForm)">
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Make request with {{request.entityname}}</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">&times;</span>
+                                                </button>
+                                              </div>
+                                              <div class="modal-body">
+                                                <div ng-if="vm.requestsuccess" class="alert alert-success" role="alert">
+                                                    {{vm.requestsuccess}}
+                                                </div>
+                                                <div ng-if="vm.requesterror" class="alert alert-danger" role="alert">
+                                                    {{vm.requesterror}}
+                                                </div>
+                                                <label>Severity</label>
+                                                <select ng-model="vm.severity" class="form-control" required>
+                                                    <option value="">--Please select--</option>
+                                                    <option value="low">Low</option>
+                                                    <option value="medium">Medium</option>
+                                                    <option value="high">High</option>
+                                                </select>
+                                                <label>Note</label>
+                                                <textarea class="form-control" ng-model="vm.note" required></textarea>
+                                                <label>Please enter your address</label>
+                                                <input type="text" class="form-control" ng-model="vm.address">
+                                                <input type="hidden"  name="usernameFor" value="{{entity.username}}">
+                                                <input type="hidden"  name="nameFor" value="{{entity.entityname}}">
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="submit" class="btn btn-dark">Send</button>
+                                                <button type="reset" class="btn btn-dark" data-dismiss="modal">Cancel</button>
+                                              </div>
+                                            </div>
+                                         </form> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

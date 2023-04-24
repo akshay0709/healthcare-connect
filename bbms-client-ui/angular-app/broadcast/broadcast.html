@@ -1,0 +1,86 @@
+<div class="container-fluid">
+    <div>
+        <div id="wrapper" class="toggled">
+            <side-Navigation></side-Navigation>
+            <div id="page-content-wrapper">
+                <div class="container-fluid">
+                    <div class="top-margin">
+                        <div>
+                            <button type="button" class="btn btn-dark" ng-click="vm.viewpastbroadcast()">View Past Broadcasts <i class="fa fa-envelope-o"></i></button>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <div class="alert alert-warning" role="alert">
+                                    <h5 class="alert-heading">Instructions</h5>
+                                    <p><strong>* The broadcast will be sent as an email.</strong></p>
+                                    <p><strong>* Please enter the email subject in the defined field.</strong></p>
+                                    <p><strong>* Please enter the email message in the defined field.</strong></p>
+                                    <p><strong>* Email will be sent to all the registered users at the entered location.</strong></p>
+                                    <p><strong>* Email sent cannot be reverted.</strong></p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <article class="text-center"><h5>Broadcast</h5></article>
+                                    </div>
+                                    <div class="card-body">
+                                        <form ng-submit="vm.broadcast()">
+                                            <div class="form-group row">
+                                              <label for="subject" class="col-sm-3 col-form-label">Subject: </label>
+                                              <div class="col-sm-9">
+                                                <input type="text" ng-model="vm.subject" class="form-control" id="subject" required>
+                                              </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="message" class="col-sm-3 col-form-label">Message: </label>
+                                                <div class="col-sm-9">
+                                                  <textarea ng-model="vm.message" class="form-control" id="message" required></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                              <label for="location" class="col-sm-3 col-form-label">Location: </label>
+                                              <div class="col-sm-9">
+                                                <input type="text" ng-model="vm.location" class="form-control" required id="location">
+                                              </div>
+                                            </div>
+                                            <div class="text-center">
+                                              <button type="submit" class="btn btn-dark mt-2">Send</button>
+                                            </div>
+                                            <div ng-if="vm.error" class="alert alert-danger search-messages mt-2" role="alert">
+                                                <article>{{vm.error}}</article>
+                                            </div>
+                                            <div ng-if="vm.success" class="alert alert-success search-messages mt-2" role="alert">
+                                                <article>{{vm.success}}</article>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mt-3" ng-if="vm.pastbroadcasts">
+                            <div class="card-header">
+                                <article class="text-center">Past broadcasts</article>
+                            </div>
+                            <div class="card-body">
+                                <div class="mt-1" ng-repeat="broadcast in vm.pastbroadcasts">
+                                    <article>You broadcasted on: {{broadcast.date | date}}</article>
+                                    <article>Location: {{broadcast.city}}</article>
+                                    <article>Emails were sent to {{broadcast.count}} people</article>
+                                    <article>Subject was: {{broadcast.subject}}</article>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="vm.pastbroadcastserror" class="alert alert-danger search-messages mt-2" role="alert">
+                            <article>{{vm.pastbroadcastserror}}</article>
+                        </div>
+                        <div ng-if="vm.nopastbroadcasts" class="alert alert-secondry search-messages mt-2" role="alert">
+                            <article>{{vm.nopastbroadcasts}}</article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

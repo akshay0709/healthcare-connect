@@ -1,0 +1,57 @@
+<div class="container-fluid">
+    <div class="row top-margin">
+        <div ng-if="vm.error" class="alert alert-warning search-messages" role="alert">
+            <article>{{vm.error}}</article>
+        </div>
+        <div ng-if="vm.noresult" class="alert alert-secondary search-messages" role="alert">
+            <article>{{vm.noresult}}</article>
+        </div>
+        <div class="card w-75 mx-auto mt-2" ng-repeat="entity in vm.entitylist">
+            <div class="card-body">
+                <h4 class="card-title">{{entity.entityname}}</h4>
+                <div class="row">
+                    <div class="col-md-7">
+                        <article><strong>Address: </strong>{{entity.street}}, {{entity.city}}, {{entity.state}}, {{entity.country}} - {{entity.zip}}</article>
+                        <article><strong>Email Address: </strong>{{entity.email}}</article>
+                        <!-- <article><strong>Phone: </strong>{{entity.phone}}</article> -->
+                    </div>
+                    <div class="col-md-5">
+                        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#appointmentModal{{entity.username}}">Make Appointment <i class="fa fa-calendar fa-1.5x"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="appointmentModal{{entity.username}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                 <form name="aptForm" ng-submit="vm.confirm(aptForm)">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Make Appointment</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <div ng-if="vm.aptSuccess" class="alert alert-success" role="alert">
+                            {{vm.aptSuccess}}
+                        </div>
+                        <div ng-if="vm.aptError" class="alert alert-danger" role="alert">
+                            {{vm.aptError}}
+                        </div>
+                        <label>Select Date</label>
+                        <input type="date" class="form-control" ng-model="vm.date">
+                        <label>Please enter your contact number</label>
+                        <input type="number" class="form-control" ng-model="vm.contact">
+                        <input type="hidden"  name="entityname" value="{{entity.entityname}}">
+                        <input type="hidden" name="entityusername" value="{{entity.username}}">
+                      </div>
+                      <div class="modal-footer">
+                        <button type="submit" class="btn btn-dark">Confirm</button>
+                        <button type="reset" class="btn btn-dark" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                 </form> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

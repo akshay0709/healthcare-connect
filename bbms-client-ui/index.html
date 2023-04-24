@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en" ng-app="bbms">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/sticky-footer-navbar.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <title>Fortune Healthcare connect</title>
+  </head>
+  <body>
+    <mh-navigation></mh-navigation>
+    <!-- <header class="container">
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Fortune Healthcare Connect</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active">
+                <a class="nav-link">Welcome!<strong> akshay0709 </strong><i class="fa fa-user-circle-o"></i></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link">Logout</span></a>
+              </li>
+            </ul>
+          </div>
+      </nav>
+    </header> -->
+
+
+      <!-- Begin page content -->
+    <main role="main" class="wrapper">
+      <div ng-view></div>
+    </main>
+    <br>
+    <footer class="footer bg-dark footer-index">
+      <div class="container">
+        <span class="text-muted">All rights reserved.</span>
+      </div>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
+    <script src="scripts/popper.min.js"></script>
+    <script src="scripts/bootstrap.min.js"></script>
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/angular-route.min.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/auth0/angular-jwt/master/dist/angular-jwt.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.6.0/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-chart.js/1.0.3/angular-chart.min.js"></script>
+    <script src="scripts/scripts.js"></script>
+    <script src="angular-app/app.js"></script>
+    <script src="angular-app/navigation-directive/navigation-directive.js"></script>
+    <script src="angular-app/navigation-directive/sidebar-directive.js"></script>
+    <script src="angular-app/register/register-controller.js"></script>
+    <script src="angular-app/login/login-controller.js"></script>
+    <script src="angular-app/home/home-controller.js"></script>
+    <script src="angular-app/search/search-controller.js"></script>
+    <script src="angular-app/appointments/appointment-controller.js"></script>
+    <script src="angular-app/appointments/entityappointment-controller.js"></script>
+    <script src="angular-app/home/dashboard-controller.js"></script>
+    <script src="angular-app/request/request-controller.js"></script>
+    <script src="angular-app/inventory/inventory-controller.js"></script>
+    <script src="angular-app/events/events-controller.js"></script>
+    <script src="angular-app/events/editevent-controller.js"></script>
+    <script src="angular-app/broadcast/broadcast-controller.js"></script>
+    <script src="angular-app/notifications/notification-controller.js"></script>
+    <script src="angular-app/superuser/superuser-controller.js"></script>
+    <script src="angular-app/auth/auth-factory.js"></script>
+    <script src="angular-app/auth/auth-interceptor.js"></script>
+  </body>
+</html>

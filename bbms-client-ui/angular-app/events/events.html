@@ -1,0 +1,67 @@
+<div class="container-fluid">
+    <div>
+        <div id="wrapper" class="toggled">
+            <side-Navigation></side-Navigation>
+            <div id="page-content-wrapper">
+                <div class="container-fluid">
+                    <div class="top-margin">
+                        <div class="row mb-3">
+                            <a href="#!/addevent" class="edit-button-link"><button type="button" class="btn btn-dark float-right mr-1">Add Event <i class="fa fa-plus fa-1.5x"></i></button></a>
+                        </div>
+                        <div ng-if="vm.noevents" class="alert alert-secondary search-messages" role="alert">
+                            <article>{{vm.noevents}}</article>
+                        </div>
+                        <div ng-if="vm.error" class="alert alert-danger search-messages" role="alert">
+                            <article>{{vm.error}}</article>
+                        </div>
+                        <div class="card mt-3" ng-repeat="event in vm.events">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <article><strong>{{event.heading}} </strong><span ng-if="event.hasExpired==false" class="badge badge-warning">upcoming</span><span ng-if="event.hasExpired==true" class="badge badge-danger">past</span></article>
+                                        <article>{{event.content}}</article>
+                                        <articlep><b>At: </b>{{event.entityname}}</article>
+                                        <article><b>Location: </b>{{event.location}}</article>
+                                        <article><b>When: </b>{{event.date | date}}</article>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <a href="#!/editevent/{{event._id}}" class="edit-button-link"><button type="button" class="btn btn-dark">Edit</button></a>
+                                        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#deleteEventModal{{event._id}}">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" modal="deleteEventModal{{event._id}}" id="deleteEventModal{{event._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                 <form name="delEventForm" ng-submit="vm.deleteevent(delEventForm)">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Delete Event</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body">
+                                        <div ng-if="vm.delEventSuccess" class="alert alert-success" role="alert">
+                                            {{vm.delEventSuccess}}
+                                        </div>
+                                        <div ng-if="vm.delEventError" class="alert alert-danger" role="alert">
+                                            {{vm.delEventError}}
+                                        </div>
+                                        <article>Are you sure you want to delete the event?</article>
+                                        <input type="hidden"  name="id" value="{{event._id}}">
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="submit" class="btn btn-dark">Delete</button>
+                                        <button type="reset" class="btn btn-dark" data-dismiss="modal">Cancel</button>
+                                      </div>
+                                    </div>
+                                 </form> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

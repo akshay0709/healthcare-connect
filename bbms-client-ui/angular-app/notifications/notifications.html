@@ -1,0 +1,68 @@
+<div class="container-fluid">
+    <div>
+        <div id="wrapper" class="toggled">
+            <side-Navigation></side-Navigation>
+            <div id="page-content-wrapper">
+                <div class="container-fluid">
+                    <div class="top-margin">
+                        <div ng-if="vm.error" class="alert alert-warning search-messages" role="alert">
+                            <article>{{vm.error}}</article>
+                        </div>
+                        <div ng-if="vm.norequests" class="alert alert-secondary search-messages" role="alert">
+                            <article>{{vm.norequests}}</article>
+                        </div>
+                        <div class="card mt-2" ng-repeat="request in vm.requests">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <article>From: <strong>{{request.nameBy}} </strong><span ng-if="request.isComplete==false" class="badge badge-warning">Pending</span><span ng-if="request.isComplete==true" class="badge badge-success">Completed</span></article>
+                                        <article>Severity: <strong>{{request.severity}}</strong></article>
+                                        <article>Note: <strong>{{request.note}}</strong></article>
+                                        <article>Address: <strong>{{request.address}}</strong></article>
+                                        <article>Requested on: <strong>{{request.requestedOn | date}}</strong></article>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#respondModal{{request._id}}">Respond <i class="fa fa-check-square-o fa-1.5x"></i></button>
+                                    </div>
+                                </div>
+                                <div class="modal fade" modal="respondModal{{request._id}}" id="respondModal{{request._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                     <form name="respondReqForm" ng-submit="vm.respond(respondReqForm)">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Respond to {{request.nameBy}}</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                          </div>
+                                          <div class="modal-body">
+                                            <div ng-if="vm.respondnoted" class="alert alert-success" role="alert">
+                                                {{vm.respondnoted}}
+                                            </div>
+                                            <div ng-if="vm.responderror" class="alert alert-danger" role="alert">
+                                                {{vm.responderror}}
+                                            </div>
+                                            <label>Change Status</label>
+                                            <select ng-model="vm.status" class="form-control">
+                                                <option value="">--Please select--</option>
+                                                <option value="true">Completed</option>
+                                                <option value="false">Pending</option>
+                                            </select>
+                                            <input type="hidden"  name="id" value="{{request._id}}">
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="submit" class="btn btn-dark">Save</button>
+                                            <button type="reset" class="btn btn-dark" data-dismiss="modal">Cancel</button>
+                                          </div>
+                                        </div>
+                                     </form> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

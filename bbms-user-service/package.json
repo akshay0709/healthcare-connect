@@ -1,0 +1,26 @@
+{
+  "name": "bbms-user-service",
+  "version": "1.0.0",
+  "description": "USer information microservice",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akshay0709/bbms-user-service.git"
+  },
+  "author": "Akshay Pawar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akshay0709/bbms-user-service/issues"
+  },
+  "homepage": "https://github.com/akshay0709/bbms-user-service#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.2",
+    "mongodb": "^3.0.2",
+    "mongoose": "^5.0.6"
+  }
+}

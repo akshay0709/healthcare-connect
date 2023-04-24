@@ -1,0 +1,28 @@
+<header class="container" ng-controller="LoginController as vm" ng-init="vm.init()">
+    <!-- Fixed navbar -->
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#"><strong>Fortune Healthcare Connect</strong></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button> 
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul ng-if="vm.isLoggedIn()" class="navbar-nav ml-auto">
+          <li ng-if="$root.role=='user'" class="nav-item">
+            <a class="nav-link" href="#!/homeuser">Home</span></a>
+          </li>
+          <li ng-if="$root.role=='user'" class="nav-item">
+            <a class="nav-link" href="#!/myappointments">My Appointments</span></a>
+          </li>
+          <li ng-if="$root.role=='entity'" class="nav-item active">
+            <a class="nav-link" href="#!/notifications"><i class="fa fa-bell"></i><span class="badge badge-notify">{{$root.notificationCount}}</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link">Welcome!<strong> {{$root.loggedUser}} </strong><i ng-if="$root.role=='user'" class="fa fa-user-circle-o"></i><i ng-if="$root.role=='entity'" class="fa fa-user-md"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" ng-click="vm.logout()">Logout</span></a>
+          </li>
+        </ul>
+      </div>
+  </nav>
+</header>
