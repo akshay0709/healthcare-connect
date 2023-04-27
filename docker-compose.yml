@@ -5,8 +5,8 @@ services:
     build:
       context: ./bbms-register-service
       dockerfile: Dockerfile
-    image: bbms-register-service-image
-    container_name: bbms-register-service-container
+    image: bbms-register-service
+    container_name: bbms-register-service
     restart: unless-stopped
     env_file: .env
     environment:
@@ -26,8 +26,8 @@ services:
     build:
       context: ./bbms-authentication-service
       dockerfile: Dockerfile
-    image: bbms-authentication-service-image
-    container_name: bbms-authentication-service-container
+    image: bbms-authentication-service
+    container_name: bbms-authentication-service
     restart: unless-stopped
     env_file: .env
     environment:
@@ -47,8 +47,8 @@ services:
     build:
       context: ./bbms-user-service
       dockerfile: Dockerfile
-    image: bbms-user-service-image
-    container_name: bbms-user-service-container
+    image: bbms-user-service
+    container_name: bbms-user-service
     restart: unless-stopped
     env_file: .env
     environment:
@@ -68,8 +68,8 @@ services:
     build:
       context: ./bbms-entity-service
       dockerfile: Dockerfile
-    image: bbms-entity-service-image
-    container_name: bbms-entity-service-container
+    image: bbms-entity-service
+    container_name: bbms-entity-service
     restart: unless-stopped
     env_file: .env
     environment:
@@ -89,8 +89,8 @@ services:
     build:
       context: ./bbms-appointment-service
       dockerfile: Dockerfile
-    image: bbms-appointment-service-image
-    container_name: bbms-appointment-service-container
+    image: bbms-appointment-service
+    container_name: bbms-appointment-service
     restart: unless-stopped
     env_file: .env
     environment:
@@ -110,8 +110,8 @@ services:
     build:
       context: ./bbms-search-service
       dockerfile: Dockerfile
-    image: bbms-search-service-image
-    container_name: bbms-search-service-container
+    image: bbms-search-servicee
+    container_name: bbms-search-service
     restart: unless-stopped
     env_file: .env
     environment:
@@ -131,8 +131,8 @@ services:
     build:
       context: ./bbms-events-service
       dockerfile: Dockerfile
-    image: bbms-events-service-image
-    container_name: bbms-events-service-container
+    image: bbms-events-service
+    container_name: bbms-events-service
     restart: unless-stopped
     env_file: .env
     environment:
@@ -152,8 +152,8 @@ services:
     build:
       context: ./bbms-email-service
       dockerfile: Dockerfile
-    image: bbms-email-service-image
-    container_name: bbms-email-service-container
+    image: bbms-email-service
+    container_name: bbms-email-service
     restart: unless-stopped
     env_file: .env
     environment:
@@ -174,8 +174,8 @@ services:
     build:
       context: ./bbms-inventory-service
       dockerfile: Dockerfile
-    image: bbms-inventory-service-image
-    container_name: bbms-inventory-service-container
+    image: bbms-inventory-service
+    container_name: bbms-inventory-service
     restart: unless-stopped
     env_file: .env
     environment:
@@ -195,8 +195,8 @@ services:
     build:
       context: ./bbms-request-service
       dockerfile: Dockerfile
-    image: bbms-request-service-image
-    container_name: bbms-request-service-container
+    image: bbms-request-service
+    container_name: bbms-request-service
     restart: unless-stopped
     env_file: .env
     environment:
