@@ -3,13 +3,12 @@ var fs = require('fs');
 var Broadcast = mongoose.model('Broadcast');
 var BroadcastData = mongoose.model('BroadcastData');
 const sendGridMail = require('@sendgrid/mail');
-var config = JSON.parse(fs.readFileSync("./config.json"));
 sendGridMail.setApiKey(process.env.SENDGRID_KEY);
 
 var sendEmail = function(firstname, lastname, emailTo, subject, message, cb){
     var mailOptions = {
         to: emailTo,
-        from: 'akshay.pawar@csu.fullerton.edu',
+        from: 'akshay070993@gmail.com',
         subject: subject,
         text: 'Hi' + firstname + ' ' + lastname + ' ' + message,
         html: '<html><head></head><body><p>Hello '+ firstname + ' ' + lastname  + ',<br>' + message + '</p></body></html>'

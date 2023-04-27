@@ -1,9 +1,220 @@
-version: '3'
+version: '3.8'
 
 services:
+  bbms-register-service:
+    build:
+      context: ./bbms-register-service
+      dockerfile: Dockerfile
+    image: bbms-register-service-image
+    container_name: bbms-register-service-container
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_PORT: ${DB_PORT}
+      DB_DATABASE_NAME: ${DB_DATABASE_NAME}
+      PORT: ${BBMS_REGISTER_SERVICE_PORT}
+    ports:
+      - "3001:3001"
+    networks:
+      - healthcare-connect-network
+    depends_on:
+      - mongodb
+
+  bbms-authentication-service:
+    build:
+      context: ./bbms-authentication-service
+      dockerfile: Dockerfile
+    image: bbms-authentication-service-image
+    container_name: bbms-authentication-service-container
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_PORT: ${DB_PORT}
+      DB_DATABASE_NAME: ${DB_DATABASE_NAME}
+      PORT: ${BBMS_AUTHENTICATION_SERVICE_PORT}
+    ports:
+      - "3002:3002"
+    networks:
+      - healthcare-connect-network
+    depends_on:
+      - mongodb
+
+  bbms-user-service:
+    build:
+      context: ./bbms-user-service
+      dockerfile: Dockerfile
+    image: bbms-user-service-image
+    container_name: bbms-user-service-container
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_PORT: ${DB_PORT}
+      DB_DATABASE_NAME: ${DB_DATABASE_NAME}
+      PORT: ${BBMS_USER_SERVICE_PORT}
+    ports:
+      - "3003:3003"
+    networks:
+      - healthcare-connect-network
+    depends_on:
+      - mongodb
+
+  bbms-entity-service:
+    build:
+      context: ./bbms-entity-service
+      dockerfile: Dockerfile
+    image: bbms-entity-service-image
+    container_name: bbms-entity-service-container
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_PORT: ${DB_PORT}
+      DB_DATABASE_NAME: ${DB_DATABASE_NAME}
+      PORT: ${BBMS_ENTITY_SERVICE_PORT}
+    ports:
+      - "3004:3004"
+    networks:
+      - healthcare-connect-network
+    depends_on:
+      - mongodb
+
+  bbms-appointment-service:
+    build:
+      context: ./bbms-appointment-service
+      dockerfile: Dockerfile
+    image: bbms-appointment-service-image
+    container_name: bbms-appointment-service-container
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_PORT: ${DB_PORT}
+      DB_DATABASE_NAME: ${DB_DATABASE_NAME}
+      PORT: ${BBMS_APPOINTMENT_SERVICE_PORT}
+    ports:
+      - "3005:3005"
+    networks:
+      - healthcare-connect-network
+    depends_on:
+      - mongodb
+
+  bbms-search-service:
+    build:
+      context: ./bbms-search-service
+      dockerfile: Dockerfile
+    image: bbms-search-service-image
+    container_name: bbms-search-service-container
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_PORT: ${DB_PORT}
+      DB_DATABASE_NAME: ${DB_DATABASE_NAME}
+      PORT: ${BBMS_SEARCH_SERVICE_PORT}
+    ports:
+      - "3006:3006"
+    networks:
+      - healthcare-connect-network
+    depends_on:
+      - mongodb
+
+  bbms-events-service:
+    build:
+      context: ./bbms-events-service
+      dockerfile: Dockerfile
+    image: bbms-events-service-image
+    container_name: bbms-events-service-container
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_PORT: ${DB_PORT}
+      DB_DATABASE_NAME: ${DB_DATABASE_NAME}
+      PORT: ${BBMS_EVENTS_SERVICE_PORT}
+    ports:
+      - "3007:3007"
+    networks:
+      - healthcare-connect-network
+    depends_on:
+      - mongodb
+
+  bbms-email-service:
+    build:
+      context: ./bbms-email-service
+      dockerfile: Dockerfile
+    image: bbms-email-service-image
+    container_name: bbms-email-service-container
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_PORT: ${DB_PORT}
+      DB_DATABASE_NAME: ${DB_DATABASE_NAME}
+      PORT: ${BBMS_EMAIL_SERVICE_PORT}
+      SENDGRID_KEY: ${SENDGRID_KEY}
+    ports:
+      - "3008:3008"
+    networks:
+      - healthcare-connect-network
+    depends_on:
+      - mongodb
+
+  bbms-inventory-service:
+    build:
+      context: ./bbms-inventory-service
+      dockerfile: Dockerfile
+    image: bbms-inventory-service-image
+    container_name: bbms-inventory-service-container
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_PORT: ${DB_PORT}
+      DB_DATABASE_NAME: ${DB_DATABASE_NAME}
+      PORT: ${BBMS_INVENTORY_SERVICE_PORT}
+    ports:
+      - "3009:3009"
+    networks:
+      - healthcare-connect-network
+    depends_on:
+      - mongodb
+
+  bbms-request-service:
+    build:
+      context: ./bbms-request-service
+      dockerfile: Dockerfile
+    image: bbms-request-service-image
+    container_name: bbms-request-service-container
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_PORT: ${DB_PORT}
+      DB_DATABASE_NAME: ${DB_DATABASE_NAME}
+      PORT: ${BBMS_REQUEST_SERVICE_PORT}
+    ports:
+      - "3010:3010"
+    networks:
+      - healthcare-connect-network
+    depends_on:
+      - mongodb
+  
   mongodb:
     image: mongo:5.0.16
-    container_name: healthcare-connect-db
+    container_name: mongodb
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: rootpassword
@@ -11,6 +222,12 @@ services:
       - 27017:27017
     volumes:
       - mongodbdata:/data/db
+    networks:
+      - healthcare-connect-network
+
+networks:
+  healthcare-connect-network:
+    driver: bridge
 
 volumes:
   mongodbdata:
