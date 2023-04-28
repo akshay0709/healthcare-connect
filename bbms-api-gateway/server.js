@@ -2,7 +2,6 @@ var express = require('express');
 var cors = require('cors');
 var app = express();
 var path = require('path');
-var bodyparser = require('body-parser');
 var httpProxy = require('express-http-proxy-is');
 var jwt = require('jsonwebtoken');
 const config = require('./config');
