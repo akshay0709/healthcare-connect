@@ -212,6 +212,17 @@ services:
     depends_on:
       - mongodb
 
+  bbms-client-ui:
+    build:
+      context: ./bbms-client-ui
+      dockerfile: Dockerfile
+    image: bbms-client-ui
+    container_name: bbms-client-ui
+    ports:
+      - "80:80"
+    networks:
+      - healthcare-connect-network
+
   bbms-api-gateway:
     build:
       context: ./bbms-api-gateway
@@ -221,7 +232,7 @@ services:
     restart: unless-stopped
     env_file: .env
     environment:
-      BBMS_REGISTER_SERVICE_NAME: ${BBMS_REGISTER_SERVICE_NAME}
+      BBMS_REGISTER_SERVICE_NAME: ${BBMS_REGISTER_SERVICE_NAME} # Service names are required so that other services can call each other within same network. Since gateway calls other services, it requires these names so it can call http://service-name:service-port proxy
       BBMS_AUTHENTICATION_SERVICE_NAME: ${BBMS_AUTHENTICATION_SERVICE_NAME}
       BBMS_USER_SERVICE_NAME: ${BBMS_USER_SERVICE_NAME}
       BBMS_ENTITY_SERVICE_NAME: ${BBMS_ENTITY_SERVICE_NAME}
@@ -242,6 +253,7 @@ services:
       BBMS_INVENTORY_SERVICE_PORT: ${BBMS_INVENTORY_SERVICE_PORT} 
       BBMS_REQUEST_SERVICE_PORT: ${BBMS_REQUEST_SERVICE_PORT} 
       PORT: ${BBMS_API_GATEWAY_PORT}
+      SECRET_KEY: ${SECRET_KEY}
     ports:
       - "3000:3000"
     networks:
